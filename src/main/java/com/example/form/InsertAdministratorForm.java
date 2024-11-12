@@ -1,6 +1,6 @@
 package com.example.form;
 /**
- * 管理者情報登録時に使⽤するフォーム
+ * 管理者情報登録時に使⽤するフォーム 
  * @author kanaiminami
  */
 public class InsertAdministratorForm {
