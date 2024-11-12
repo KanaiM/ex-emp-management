@@ -42,8 +42,8 @@ public class AdministratorRepository {
     public void insert(Administrator administrator){
         SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 
-        String insertSql = "INSERT INTO administrators(id, name, mail_address, password)"
-            + "VALUES(:id, :name, :mailAddress, :password);";
+        String insertSql = "INSERT INTO administrators(name, mail_address, password)"
+            + "VALUES(:name, :mailAddress, :password);";
         template.update(insertSql, param);
     }
 
@@ -55,9 +55,9 @@ public class AdministratorRepository {
      */
     public Administrator findByMailAddressAndPassword(String mailAddress, String password){
         String sql = "SELECT id, name, mail_address, password FROM administrators"
-            +"WHERE mail_address=:mailAddress AND password=:password;";
+            +" WHERE mail_address=:mailAddress AND password=:password;";
 
-        SqlParameterSource param = new MapSqlParameterSource();
+        SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
 
         List<Administrator> administratorList 
             = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER); 
