@@ -36,6 +36,13 @@ public class EmployeeController {
         return "employee/list";
     }
     
+    /**
+     * 従業員情報を検索する処理を記述する 
+     * @param id
+     * @param model
+     * @param form
+     * @return リストで選択した従業員の従業員情報
+     */
     @GetMapping("/showDetail")
     public String showDetail(String id, Model model, UpdateEmployeeForm form){
         Employee employee = employeeService.showDetail(Integer.parseInt(id));
