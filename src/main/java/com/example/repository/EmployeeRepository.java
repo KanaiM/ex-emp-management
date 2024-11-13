@@ -48,8 +48,8 @@ public class EmployeeRepository {
      * @return employeeList
      */
     public List<Employee> findAll(){
-        String sql = "SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count,"
-            + "FROM employees ORDER BY hire_date DESC;";
+        String sql = "SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count"
+            + " FROM employees ORDER BY hire_date DESC;";
 
         List<Employee> employeesList
             =template.query(sql, EMPLOYEE_ROW_MAPPER);
@@ -64,9 +64,9 @@ public class EmployeeRepository {
      * @return employee
      */
     public Employee load(Integer id){
-        String sql = "SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count,"
-            + "FROM employees WHERE id=:id;";
-        SqlParameterSource param = new MapSqlParameterSource();
+        String sql = "SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count"
+            + " FROM employees WHERE id=:id;";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
         Employee employee = new Employee();
         try { 
         employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
