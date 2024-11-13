@@ -37,11 +37,21 @@ public class AdministratorController {
         return new InsertAdministratorForm();
     }
 
+    /**
+     * 登録フォームにフォワードする
+     * @param form
+     * @return　登録フォーム
+     */
     @GetMapping("/toInsert")
     public String toInsert(InsertAdministratorForm form) {
         return "administrator/insert";
     }
-    
+
+    /**
+     * 管理者情報を登録する
+     * @param form
+     * @return ログイン画⾯
+     */
     @PostMapping("/insert")
     public String insert(InsertAdministratorForm form) {
         Administrator administrator = new Administrator();
@@ -50,11 +60,24 @@ public class AdministratorController {
         return "redirect:/";
     }
     
+    /**
+     * ログイン画⾯にフォワードする
+     * @param form
+     * @return　ログイン画⾯
+     */
     @GetMapping("/")
     public String toLogin(LoginForm form) {
         return "administrator/login";
     }
 
+    /**
+     * ログイン時の処理をする。
+     * @param form
+     * @param model
+     * @return
+     * 未登録の情報の際「メールアドレスまたはパスワードが不正です。」というエラーメッセージを表示したログイン画⾯にフォワードする。 
+     * ログイン成功した際はる従業員情報⼀覧ページにリダイレクトする
+     */
     @PostMapping("/login")
     public String login(LoginForm form, Model model) {
         Administrator date = administratorService.login(form.getMailAddress(), form.getPassword());
@@ -64,5 +87,16 @@ public class AdministratorController {
         }
         session.setAttribute("administratorName", date);
         return "redirect:/employee/showList";
+    }
+
+    /**
+    * ログアウトをする
+    * @param form
+    * @return ログイン画⾯ 
+    */
+    @GetMapping("/logout")
+    public String logout(LoginForm form) {
+        session.invalidate();
+        return "redirect:/";
     }
 }
