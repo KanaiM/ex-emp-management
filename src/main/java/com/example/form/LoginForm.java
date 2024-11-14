@@ -1,19 +1,13 @@
 package com.example.form;
+
 /**
- * 管理者情報登録時に使⽤するフォーム 
+ * ログイン時に使⽤するフォーム 
  * @author kanaiminami
  */
-public class InsertAdministratorForm {
-    private String name;
+public class LoginForm {
+
     private String mailAddress;
     private String password;
-    
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
     public String getMailAddress() {
         return mailAddress;
     }
@@ -26,10 +20,9 @@ public class InsertAdministratorForm {
     public void setPassword(String password) {
         this.password = password;
     }
-
     @Override
     public String toString() {
-        return "Administrator [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-                + "]";
+        return "LoginForm [mailAddress=" + mailAddress + ", password=" + password + "]";
     }
+
 }
