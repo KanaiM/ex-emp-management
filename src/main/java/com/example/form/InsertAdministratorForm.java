@@ -1,5 +1,6 @@
 package com.example.form;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -11,6 +12,7 @@ public class InsertAdministratorForm {
     @NotBlank(message = "必須入力です")
     private String name;
     @NotBlank(message = "必須入力です")
+    @Email(message = "メールアドレスの形式が不正です")
     private String mailAddress;
     @NotBlank(message = "必須入力です")
     @Size(min=3, max=127, message="3文字以上127文字以内で記載してください")
