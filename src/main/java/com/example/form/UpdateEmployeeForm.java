@@ -1,5 +1,7 @@
 package com.example.form;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * 従業員情報更新時に使⽤するフォーム 
  * @author kanaiminami
@@ -7,6 +9,7 @@ package com.example.form;
 public class UpdateEmployeeForm {
 
     private String id;
+    @NotBlank(message = "扶養家族がいない場合は0と入力してください")
     private String dependentsCount;
     public String getId() {
         return id;
