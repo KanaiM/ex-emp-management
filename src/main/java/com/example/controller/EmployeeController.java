@@ -3,9 +3,11 @@ package com.example.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,18 +60,23 @@ public class EmployeeController {
     }
 
     /**
-     * 扶養⼈数を更新する
+     * 扶養人数を更新する
      * @param form
      * @return 従業員⼀覧を出⼒する
      */
     @PostMapping("/update")
-    public String update(UpdateEmployeeForm form) {
-        System.out.println(form.getId());
-        employeeService.showDetail(Integer.parseInt(form.getId()));
-        Employee employee = new Employee();
-        employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
-        employeeService.update(employee);
-        return "redirect:/employee/showList";
+    public String update(
+        @Validated    
+        UpdateEmployeeForm form
+        ,BindingResult result
+        ,Model model){
+            if(result.hasErrors()){
+                return showDetail(form.getId(), model,form);
+            }
+            Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
+            employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+            employeeService.update(employee);
+            return "redirect:/employee/showList";
     }
     
 }
