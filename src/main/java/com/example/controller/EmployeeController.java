@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Employee;
 import com.example.form.UpdateEmployeeForm;
 import com.example.service.EmployeeService;
+
+import jakarta.servlet.http.HttpSession;
+
 /**
  * 従業員情報を検索する処理を記述する 
  * @author kanaiminami
  */
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 @RequestMapping("/employee")
@@ -26,6 +31,7 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
 
     /**
      * 従業員⼀覧を出⼒する
@@ -72,4 +78,5 @@ public class EmployeeController {
             employeeService.update(employee);
             return "redirect:/employee/showList";
     }
+    
 }

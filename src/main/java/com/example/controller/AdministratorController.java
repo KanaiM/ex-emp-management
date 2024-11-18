@@ -88,12 +88,12 @@ public class AdministratorController {
      */
     @PostMapping("/login")
     public String login(LoginForm form, Model model) {
-        Administrator date = administratorService.login(form.getMailAddress(), form.getPassword());
-        if(date == null){
+        Administrator data = administratorService.login(form.getMailAddress(), form.getPassword());
+        if(data == null){
             model.addAttribute("message", "メールアドレスまたはパスワードが不正です。");
             return "administrator/login";
         }
-        session.setAttribute("administratorName", date);
+        session.setAttribute("administratorName", data);
         return "redirect:/employee/showList";
     }
 

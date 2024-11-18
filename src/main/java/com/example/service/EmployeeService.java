@@ -39,10 +39,10 @@ public class EmployeeService {
     }
 
     /**
-     * 扶養⼈数を更新する
+     * 従業員情報を更新する
      * @param employee
      */
-    public void update (Employee employee){
+    public void update(Employee employee){
         employeeRepository.update(employee);
-    }
+    } 
 }
